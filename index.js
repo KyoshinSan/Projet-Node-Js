@@ -8,8 +8,6 @@ let quizz = {}
 
 axios.get("https://opentdb.com/api.php?amount=10&category=15&difficulty=medium")
 	.then(response =>  quizz = response.data.results[0])
-	.then(() => console.log(quizz))
-	.then(() => console.log(quizz.question))
 	.then(() => input(quizz.question, quizz.correct_answer, quizz.incorrect_answers))
 	.catch(err => console.log("err"))
 	

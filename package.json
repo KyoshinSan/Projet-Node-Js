@@ -4,7 +4,10 @@
   "description": "Projet Node Js B2A",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
+  },
+  "bin": {
+     "ask-me-something": "./index.js"
   },
   "author": "Jonathan DINH & Theo HERNANDEZ",
   "license": "ISC",
