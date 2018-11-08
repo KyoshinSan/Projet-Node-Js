@@ -1,0 +1,11 @@
+{
+  "name": "quizz-js",
+  "version": "1.0.0",
+  "description": "Projet Node Js B2A",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan DINH & Theo HERNANDEZ",
+  "license": "ISC"
+}
