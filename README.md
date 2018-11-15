@@ -67,7 +67,7 @@ On peut passer en arguments une catégorie parmi les 2 suivants :
  
 ### On peut réunir les 3 arguments :
 
-	$ ask-me-something --category viedeogames --difficulty medium --type multiple
+	$ ask-me-something --category videogames --difficulty medium --type multiple
 	
 ### La version :
 
