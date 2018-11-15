@@ -28,7 +28,7 @@ Il ne vous reste plus qu'à le tester
 	
 ## Option de la commande
 	
-Les catégories :
+### Les catégories :
 
 Exemple :
 
@@ -42,7 +42,7 @@ On peut passer en arguments une catégorie parmi les 5 suivants :
  * film
  * manga
  
-La difficulté :
+### La difficulté :
 
 Exemple :
 
@@ -54,7 +54,7 @@ On peut passer en arguments une catégorie parmi les 3 suivants :
  * medium
  * hard
  
-Le type de question :
+### Le type de question :
 
 Exemple :
 
@@ -65,6 +65,22 @@ On peut passer en arguments une catégorie parmi les 2 suivants :
  * multiple
  * boolean
  
-On peut réunir les 3 arguments :
+### On peut réunir les 3 arguments :
 
 	$ ask-me-something --category viedeogames --difficulty medium --type multiple
+	
+### La version :
+
+Exemple :
+
+	$ ask-me-something --version
+
+Pour obtenir la version
+
+### Help :
+
+Exemple :
+
+	$ ask-me-something --help
+
+Pour l'aide pour afficher toutes les options possible
