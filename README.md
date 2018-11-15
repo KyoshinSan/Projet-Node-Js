@@ -36,8 +36,8 @@ Exemple :
 
 	
 On peut passer en arguments une catégorie parmi les 5 suivants :
-	** sport
-	** videogames
-	** cartoon
-	** film
-	** manga
+ * sport
+ * videogames
+ * cartoon
+ * film
+ * manga
