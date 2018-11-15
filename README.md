@@ -13,6 +13,6 @@
 # On peut utiliser plusieurs option à la fois.
 #
 # La partie que vous avez réaliser est enregistrer dans un autre fichier que vous pouvez consulter avec le chemin qui est afficher sur la console (/tmp/quizz.txt)
-# Il y a aussi marquer votre score directement sur la console pour vous améliorer la fosi d'après.
+# Il y a aussi marquer votre score directement sur la console pour vous améliorer la fois d'après.
 #
 # Il ne vous reste plus qu'à le tester
