@@ -30,11 +30,12 @@ Il ne vous reste plus qu'à le tester
 	
 Les catégories :
 
-	* Exemple :
+Exemple :
 
-		$ ask-me-something --category sport
+	$ ask-me-something --category sport
+
 	
-	On peut passer en arguments une catégorie parmi les 5 suivants :
+On peut passer en arguments une catégorie parmi les 5 suivants :
 	** sport
 	** videogames
 	** cartoon
