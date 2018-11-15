@@ -1,108 +1,135 @@
 #!/usr/bin/env node
 
+
+/** IMPORTS **/
+
 const axios = require('axios')
 const inquirer = require('inquirer')
 const program = require('commander')
+const fs = require('fs')
+
+/** VARIABLES **/
+
+let hyperlink = 'https://opentdb.com/api.php?amount=10'
+let quizz = []
+
+/** MODULE: COMMANDER **/
 
 program
- .version('1.0.0')
- .description('Pose une question')
- .option('-c, --category [theme]', 'Choose a category')
- .option('-d, --difficulty [difficulty]', 'Choose your difficulty')
- .option('-t, --type [type]', 'Multiple or True/False')
- 
+    .version('1.0.0')
+    .description('ask you 10 questions as a quizz !')
+    .option('-c, --category [theme]', 'Choose a category (videogames/film/sport/manga/cartoon)')
+    .option('-d, --difficulty [difficulty]', 'Choose your difficulty (easy/medium/hard)')
+    .option('-t, --type [type]', 'multiple or boolean')
+    .action(function(args) {
+        if (args.category == 'film') {
+            hyperlink += '&category=11'
+        } else if (args.category == 'videogames') {
+            hyperlink += '&category=15'
+        } else if (args.category == 'sport') {
+            hyperlink += '&category=21'
+        } else if (args.category == 'manga') {
+            hyperlink += '&category=31'
+        } else if (args.category == 'cartoon') {
+            hyperlink += '&category=32'
+        }
+
+        if (args.difficulty == 'easy') {
+            hyperlink += '&difficulty=easy'
+        } else if (args.difficulty == 'medium') {
+            hyperlink += '&difficulty=medium'
+        } else if (args.difficulty == 'hard') {
+            hyperlink += '&difficulty=hard'
+        }
+
+        if (args.type == 'multiple') {
+            hyperlink += '&type=easy'
+        } else if (args.type == 'boolean') {
+            hyperlink += '&type=boolean'
+        }
+    })
+
 program.parse(process.argv)
 
-function optionCmd() {
-	if (program.category) {
-		if (program.category == 'film') {
-			return 'https://opentdb.com/api.php?amount=1&category=11'
-		}
-		
-		else if (program.category == 'jeuxvideo') {
-			return 'https://opentdb.com/api.php?amount=1&category=15'
-		}
-		
-		else if (program.category == 'sport') {
-			return 'https://opentdb.com/api.php?amount=1&category=21'
-		}
-		
-		else if (program.category == 'manga') {
-			return 'https://opentdb.com/api.php?amount=1&category=31'
-		}
-		
-		else if (program.category == 'cartoon') {
-			return 'https://opentdb.com/api.php?amount=1&category=32'
-		}
-		
-		else {
-			return 'Veuillez taper film/jeuxvideo/sport/manga/cartoon'
-		}
-	}
-	
-	else if (program.difficulty) {
-		if (program.difficulty == 'easy') {
-			return 'https://opentdb.com/api.php?amount=1&difficulty=easy'
-		}
-		
-		else if (program.difficulty == 'medium') {
-			return 'https://opentdb.com/api.php?amount=1&difficulty=medium'
-		}
-		
-		else if (program.difficulty == 'hard') {
-			return 'https://opentdb.com/api.php?amount=1&difficulty=hard'
-		}
-		
-		else {
-			return 'Veuillez taper esay/medium/hard'
-		}
-	}
-	
-	else if (program.type) {
-		if (program.type == 'multiple') {
-			return 'https://opentdb.com/api.php?amount=1&type=multiple'
-		}
-		
-		else if (program.type == 'boolean') {
-			return 'https://opentdb.com/api.php?amount=10&type=boolean'
-		}
-		
-		else {
-			return 'Veuillez taper multiple/boolean'
-		}
-	}
-	
-	else {
-		program.help()
-	}
-}
-
-let quizz = {}
-
-axios.get(optionCmd())
-	.then(response =>  quizz = response.data.results[0])
-	.then(() => input(quizz.question, quizz.correct_answer, quizz.incorrect_answers))
-	.catch(err => console.log(optionCmd()))
-	
-function input(question, correct_answer, incorrect_answers) {
-let la_reponse_bonne = correct_answer
-let les_reponse_mauvaise = incorrect_answers
-let random = Math.floor(Math.random() * (4))
-let choice_answer = incorrect_answers
-choice_answer.splice(random, 0, correct_answer);
-inquirer.prompt(
-{
-	type: 'list',
-	message: question,
-	name: 'reponse',
-	choices: choice_answer
-}).then((answers) => {
-	answers.reponse
-	if(answers.reponse == la_reponse_bonne) {
-		console.log('Bien joué')
-	} else {
-		console.log('Té nul !')
-		console.log(la_reponse_bonne)
-	}
-})	
-}
+axios.get(hyperlink)
+    .then(response => {
+        quizz = response.data.response_code
+        if (quizz == 1) {
+            throw new Error('Could not return results. The API doesn\'t have enough questions for you ! Please change arguments')
+        }
+        return response
+    })
+    .then(response => quizz = response.data.results)
+    .then(() => {
+		// this function remake the object, it transform the data on question and answer to inquirer
+        quizz.forEach(function(question, i) {
+			// use random to make a random spot to the answer
+            let random = Math.floor(Math.random() * (4))
+            let choice_answer = question.incorrect_answers
+            choice_answer.splice(random, 0, question.correct_answer)
+            question.message = question.question
+            question.type = 'list'
+            question.name = 'reponse' + i
+            question.choices = choice_answer
+            delete question.category
+            delete question.difficulty
+            delete question.question
+            delete question.incorrect_answers
+        })
+    })
+    .then(() => {
+        inquirer
+            .prompt(quizz)
+            .then((answers) => {
+				// in this function we count points and write in the file log
+                let score = 0
+                let final_text = 'Ask-me-something.log\n\n---------------------------\n\n'
+                for (let i = 0; i < 10; i++) {
+                    if (answers.reponse0 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse1 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse2 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse3 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse4 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse5 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse6 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse7 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse8 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else if (answers.reponse9 == quizz[i].correct_answer) {
+                        score++
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou succeed this question !\n\n'
+                    } else {
+                        final_text += 'Question : ' + quizz[i].message + '\n' + 'Good Answer : ' + quizz[i].correct_answer + '\nYou failed this question !\n\n'
+                    }
+                }
+                final_text += 'Your score : ' + score + '\n'
+                try {
+                    // Write the question and the good answers
+                    fs.writeFile('/tmp/quizz.txt', final_text, (err) => {
+                        if (err) console.log(err)
+                    })
+                } catch (err) {
+                    console.error('ERR > ', err)
+                }
+                console.log('Your score : ' + score)
+                console.log('You can look your score in details in /tmp/quizz.txt')
+            })
+    })
+    .catch(err => console.log(err.message))
