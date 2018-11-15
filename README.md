@@ -28,7 +28,7 @@ Il ne vous reste plus qu'à le tester
 	
 ## Option de la commande
 	
-###Les catégories :
+Les catégories :
 
 Exemple :
 
@@ -41,3 +41,26 @@ On peut passer en arguments une catégorie parmi les 5 suivants :
  * cartoon
  * film
  * manga
+ 
+La difficulté :
+
+Exemple :
+
+	$ ask-me-something --difficulty easy
+
+	
+On peut passer en arguments une catégorie parmi les 3 suivants :
+ * easy
+ * medium
+ * hard
+ 
+Le type de question :
+
+Exemple :
+
+	$ ask-me-something --type boolean
+
+	
+On peut passer en arguments une catégorie parmi les 2 suivants :
+ * multiple
+ * boolean
