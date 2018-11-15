@@ -41,9 +41,7 @@ On peut passer en arguments l'id d'une catégorie.
  
 ### La difficulté :
 
-Exemple :
-
-	$ ask-me-something --difficulty easy
+	$ ask-me-something --difficulty [difficulty]
 
 	
 On peut passer en arguments une catégorie parmi les 3 suivants :
@@ -53,16 +51,13 @@ On peut passer en arguments une catégorie parmi les 3 suivants :
  
 ### Le type de question :
 
-Exemple :
-
-	$ ask-me-something --type boolean
-
+	$ ask-me-something --type [type]
 	
 On peut passer en arguments une catégorie parmi les 2 suivants :
  * multiple
  * boolean
  
-### On peut réunir les 3 arguments :
+> **Note:** On peut réunir les 3 arguments :
 
 	$ ask-me-something --category videogames --difficulty medium --type multiple
 	
