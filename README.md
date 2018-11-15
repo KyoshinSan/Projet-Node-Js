@@ -64,3 +64,7 @@ Exemple :
 On peut passer en arguments une catégorie parmi les 2 suivants :
  * multiple
  * boolean
+ 
+On peut réunir les 3 arguments :
+
+	$ ask-me-something --category viedeogames --difficulty medium --type multiple
