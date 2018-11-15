@@ -1,7 +1,9 @@
 # Projet-Node-Js - Ask-me-Something
 
 Langage : Node.js
+
 Date : 10/11/2018
+
 Auteur : Jonathan DINH & Theo HERNANDEZ
   
 L'ojectif du projet était de faire un quizz interractif. Pour cela nous avons utilisé plusieurs modules, 'Commander', 'Inquirer', 'Axios' et 'FileSystem'.
