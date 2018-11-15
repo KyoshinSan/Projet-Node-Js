@@ -34,7 +34,8 @@ Il ne vous reste plus qu'à le tester
 	
 On peut passer en arguments l'id d'une catégorie.
 
-> **Note:** Pour voir les **ids** des catégories :*
+> **Note:** Pour voir les **ids** des catégories :
+
 	$ ask-me-something --category list
 
  
