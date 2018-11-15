@@ -30,17 +30,13 @@ Il ne vous reste plus qu'à le tester
 	
 ### Les catégories :
 
-Exemple :
-
-	$ ask-me-something --category sport
-
+	$ ask-me-something --category [id]
 	
-On peut passer en arguments une catégorie parmi les 5 suivants :
- * sport
- * videogames
- * cartoon
- * film
- * manga
+On peut passer en arguments l'id d'une catégorie.
+
+> **Note:** Pour voir les **ids** des catégories :*
+	$ ask-me-something --category list
+
  
 ### La difficulté :
 
