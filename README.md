@@ -28,7 +28,7 @@ Il ne vous reste plus qu'à le tester
 	
 ## Option de la commande
 	
-Les catégories :
+###Les catégories :
 
 Exemple :
 
