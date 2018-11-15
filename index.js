@@ -51,6 +51,8 @@ program
 
 program.parse(process.argv)
 
+/** SCRIPT **/
+
 axios.get(hyperlink)
     .then(response => {
         quizz = response.data.response_code
