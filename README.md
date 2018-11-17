@@ -25,6 +25,7 @@ You just have to test it, so Ask me something !
 ## Installation
 
     $ npm install -g
+
 	
 ## Options of the command
 
@@ -36,23 +37,19 @@ You just have to test it, so Ask me something !
 We write in arguments the id of a category.
 
 
-
 > **Note:** To see category **id**:
 
 	$ ask-me-something --category list
 
-
- 
+	
 ### The difficulty:
 
 	$ ask-me-something --difficulty [difficulty]
-
 	
 We pass in argument a difficulty among the following 3:
  * easy
  * medium
  * hard
-
 
  
 ### Type of question:
@@ -67,14 +64,12 @@ We can choose between these two type of question:
 
 	$ ask-me-something --category videogames --difficulty medium --type multiple
 
-
 	
 ### The version:
 
 	$ ask-me-something --version
 
 To obtain the version.
-
 
 
 ### Help :
