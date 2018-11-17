@@ -19,7 +19,7 @@ let categories = []
 program
     .version('1.0.0')
     .description('ask you 10 questions as a quizz !')
-    .option('-c, --category [theme]', 'Choose a category (videogames/film/sport/manga/cartoon)')
+    .option('-c, --category [id]', 'Choose a category id')
     .option('-d, --difficulty [difficulty]', 'Choose your difficulty (easy/medium/hard)')
     .option('-t, --type [type]', 'multiple or boolean')
     .action(function(args) {
@@ -32,7 +32,7 @@ program
                     })
                 })
                 .then(() => process.exit())
-        } else {
+        } else if (args.category != undefined || args.category != null) {
             hyperlink += '&category=' + args.category
         }
 
@@ -43,7 +43,7 @@ program
         } else if (args.difficulty == 'hard') {
             hyperlink += '&difficulty=hard'
         } else if (args.difficulty != undefined || args.difficulty != null) {
-            console.log('Invalid argument : \'' + args.difficuty + '\'')
+            console.log('Invalid argument : \'' + args.difficulty + '\'')
             process.exit()
         }
 

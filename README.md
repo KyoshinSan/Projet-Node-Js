@@ -1,78 +1,75 @@
 # Projet Node.Js - Ask me Something
 
-Langage : Node.js
+Language : Node.js
 
 Date : 10/11/2018
 
-Auteur : Jonathan DINH & Theo HERNANDEZ
+Authors : Jonathan DINH & Theo HERNANDEZ
   
-L'ojectif du projet était de faire un quizz interractif. Pour cela nous avons utilisé plusieurs modules, 'Commander', 'Inquirer', 'Axios' et 'FileSystem'.
-Dans ce quizz, il y a donc 10 questions à répondre. On peut sélectionner 5 options dont 3 qui servent à modifier le la façon de jouer, ont étaient mis en place :
+The goal of the project was to make an interactive quiz. For this we used several modules, 'Commander', 'Inquirer', 'Axios' and 'FileSystem'.
+In this quiz, there are 10 questions to answer. We can select 5 options including 3 which are used to modify the way of playing:
 
- * la catégorie (-c) que l'on veut
- * la difficulté (-d) easy, medium, hard
- * le type (-t) de question vrai ou faux ou avec plusieurs réponses
- * la version (-v)
- * et l'option (-h) pour l'aide pour afficher toutes les options possible
+  * the category (-c) that we want
+  * difficulty (-d) easy, medium, hard
+  * the type (-t) of question true or false or with multiple answers
+  * the version (-v)
+  * and option (-h) for help to show all possible options
 
-On peut utiliser plusieurs option à la fois.
+Several options can be used at a time.
 
-La partie que vous avez réaliser est enregistrer dans un autre fichier que vous pouvez consulter avec le chemin qui est afficher sur la console (/tmp/quizz.txt)
-Il y a aussi marquer votre score directement sur la console pour vous améliorer la fois d'après.
+The game you just played is save in another file that you can consult with the path that is displayed on the console (/tmp/quizz.txt)
+In this file you could see where you had wrong and the correct answer.
+There is also show your score directly on the console to improve the next time.
 
-Il ne vous reste plus qu'à le tester
+You just have to test it, so Ask me something !
 
 ## Installation
 
     $ npm install -g
 	
-## Option de la commande
+## Options of the command
 	
-### Les catégories :
+### The categories:
 
 	$ ask-me-something --category [id]
 	
-On peut passer en arguments l'id d'une catégorie.
+We write in arguments the id of a category.
 
-> **Note:** Pour voir les **ids** des catégories :
+> **Note:** To see category **id**:
 
 	$ ask-me-something --category list
 
  
-### La difficulté :
+### The difficulty:
 
 	$ ask-me-something --difficulty [difficulty]
 
 	
-On peut passer en arguments une catégorie parmi les 3 suivants :
+We pass in argument a difficulty among the following 3:
  * easy
  * medium
  * hard
  
-### Le type de question :
+### Type of question:
 
 	$ ask-me-something --type [type]
 	
-On peut passer en arguments une catégorie parmi les 2 suivants :
+We can choose between these two type of question:
  * multiple
  * boolean
  
-> **Note:** On peut réunir les 3 arguments :
+> **Note:** We can use these 3 arguments at the same time:
 
 	$ ask-me-something --category videogames --difficulty medium --type multiple
 	
-### La version :
-
-Exemple :
+### The version:
 
 	$ ask-me-something --version
 
-Pour obtenir la version
+To obtain the version.
 
 ### Help :
 
-Exemple :
-
 	$ ask-me-something --help
 
-Pour l'aide pour afficher toutes les options possible
+To display all possible options
