@@ -8,12 +8,11 @@ Authors : Jonathan DINH & Theo HERNANDEZ
   
 The goal of the project was to make an interactive quiz. For this we used several modules, 'Commander', 'Inquirer', 'Axios' and 'FileSystem'.
 In this quiz, there are 10 questions to answer. We can select 5 options including 3 which are used to modify the way of playing:
-
- * the category (-c) that we want
- * difficulty (-d) easy, medium, hard
- * the type (-t) of question true or false or with multiple answers
- * the version (-v)
- * and option (-h) for help to show all possible options
+ * the category (-c) that we want
+ * difficulty (-d) easy, medium, hard
+ * the type (-t) of question true or false or with multiple answers
+ * the version (-v)
+ * and option (-h) for help to show all possible options
 
 Several options can be used at a time.
 
