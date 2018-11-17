@@ -23,6 +23,7 @@ program
     .option('-d, --difficulty [difficulty]', 'Choose your difficulty (easy/medium/hard)')
     .option('-t, --type [type]', 'multiple or boolean')
     .action(function(args) {
+		// to show the list of categories
         if (args.category == 'list') {
             axios.get('https://opentdb.com/api_category.php')
                 .then(response => {
@@ -36,6 +37,7 @@ program
             hyperlink += '&category=' + args.category
         }
 
+		// to choose a difficulty
         if (args.difficulty == 'easy') {
             hyperlink += '&difficulty=easy'
         } else if (args.difficulty == 'medium') {
@@ -47,6 +49,7 @@ program
             process.exit()
         }
 
+		// to choose a type of question
         if (args.type == 'multiple') {
             hyperlink += '&type=easy'
         } else if (args.type == 'boolean') {
@@ -62,8 +65,10 @@ program.parse(process.argv)
 
 /** SCRIPT **/
 
+// we fetch the api with the hyperlink
 axios.get(hyperlink)
     .then(response => {
+		// following the response_code we show the error
         quizz = response.data.response_code
         if (quizz == 1) {
             throw new Error('Could not return results. The API doesn\'t have enough questions for you ! Please change arguments')
