@@ -12,7 +12,7 @@
   "author": "Jonathan DINH & Theo HERNANDEZ",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "commander": "^2.19.0",
     "inquirer": "^6.2.0"
   }
